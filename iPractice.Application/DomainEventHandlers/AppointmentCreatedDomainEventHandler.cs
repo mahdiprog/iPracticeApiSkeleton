@@ -28,7 +28,6 @@ public class AppointmentCreatedDomainEventHandler
             .LogTrace("Appointment with Id: {Id} has been successfully created",
                 appointmentCreatedDomainEvent.Appointment.Id);
 
-        await _psychologistRepository.SetAppointment(appointmentCreatedDomainEvent.Appointment.Psychologist.Id,
-             appointmentCreatedDomainEvent.ClientId);
+        // todo: publish integration event
     }
 }

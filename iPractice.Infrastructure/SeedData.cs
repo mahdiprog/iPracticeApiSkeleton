@@ -30,11 +30,11 @@ namespace iPractice.Infrastructure
             var random = new Random();
 
             List<Client> clients = new List<Client>();
-            for (int i = 0; i < NoClients; i++)
+            for (int i = 1; i < NoClients; i++)
             {
-                var client = new Client(i, $"Client {i + 1}");
-                client.AddPsychologist(psychologists.Skip(random.Next(NoPsychologists)).First());
-                client.AddPsychologist(psychologists.Skip(random.Next(NoPsychologists)).First());
+                var client = new Client(i, $"Client {i}");
+                client.AddPsychologist(psychologists.Skip(random.Next(NoPsychologists - 1)).First());
+                client.AddPsychologist(psychologists.Skip(random.Next(NoPsychologists - 1)).First());
 
                 clients.Add(client);
             }
@@ -45,9 +45,9 @@ namespace iPractice.Infrastructure
         private static List<Psychologist> CreatePsychologists()
         {
             List<Psychologist> psychologists = new List<Psychologist>();
-            for (int i = 0; i < NoPsychologists; i++)
+            for (int i = 1; i < NoPsychologists; i++)
             {
-                psychologists.Add(new Psychologist(i, $"Psychologist {i + 1}"));
+                psychologists.Add(new Psychologist(i, $"Psychologist {i}"));
             }
 
             return psychologists;

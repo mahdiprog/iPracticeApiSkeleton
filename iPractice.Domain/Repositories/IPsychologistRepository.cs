@@ -7,7 +7,8 @@ namespace iPractice.Domain.Repositories;
 
 public interface IPsychologistRepository : IRepository<Psychologist>
 {
-    Task SetAppointment(long psychologistId, long clientId);
+    Task CreateAvailability(long psychologistId, Availability availability);
 
-    Task<IEnumerable<Psychologist>> GetByIds(params long[] psychologistIds);
+    Task<IEnumerable<Psychologist>> GetByIdsIncludeNotOccupiedAvailability(params long[] psychologistIds);
+    Task<Psychologist> GetById(long psychologistId);
 }

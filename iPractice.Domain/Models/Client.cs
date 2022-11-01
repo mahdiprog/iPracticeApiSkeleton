@@ -8,15 +8,16 @@ namespace iPractice.Domain.Models
     public class Client : Entity, IAggregateRoot
     {
         private readonly List<Psychologist> _psychologists = new();
+        public IReadOnlyCollection<Psychologist> Psychologists => _psychologists;
+        private readonly List<Appointment> _appointments = new();
+        public IReadOnlyCollection<Appointment> Appointments => _appointments;
+        public string Name { get; private set; }
 
         public Client(long id, string name)
         {
             Id = id;
             Name = name;
         }
-
-        public IReadOnlyCollection<Psychologist> Psychologists => _psychologists;
-        public string Name { get; private set; }
 
         public void AddPsychologist(Psychologist psychologist)
         {
@@ -27,8 +28,7 @@ namespace iPractice.Domain.Models
             _psychologists.Add(psychologist);
         }
 
-        private readonly List<Appointment> _appointments = new();
-        public IReadOnlyCollection<Appointment> Appointments => _appointments;
+
 
         public void AddAppointment(Appointment appointment)
         {

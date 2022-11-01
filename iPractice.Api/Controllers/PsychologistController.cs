@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Threading.Tasks;
+﻿using iPractice.Api.Mappings;
+using iPractice.Application.Services;
 using iPractice.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace iPractice.Api.Controllers
 {
@@ -13,10 +14,12 @@ namespace iPractice.Api.Controllers
     public class PsychologistController : ControllerBase
     {
         private readonly ILogger<PsychologistController> _logger;
+        private readonly IPsychologistService _psychologistService;
 
-        public PsychologistController(ILogger<PsychologistController> logger)
+        public PsychologistController(ILogger<PsychologistController> logger, IPsychologistService psychologistService)
         {
             _logger = logger;
+            _psychologistService = psychologistService;
         }
 
         [HttpGet]
@@ -34,9 +37,10 @@ namespace iPractice.Api.Controllers
         [HttpPost("{psychologistId}/availability")]
         [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<ActionResult> CreateAvailability([FromRoute] long psychologistId, [FromBody] Availability availability)
+        public async Task<ActionResult> CreateAvailability([FromRoute] long psychologistId, [FromBody] CreateAvailabilityRequest request)
         {
-            throw new NotImplementedException();
+            await _psychologistService.CreateAvailability(request.ToDto(psychologistId));
+            return Ok();
         }
 
         /// <summary>

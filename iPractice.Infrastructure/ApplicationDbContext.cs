@@ -2,7 +2,6 @@
 using iPractice.Domain.SeedWork;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 
 namespace iPractice.Infrastructure
 {
@@ -12,7 +11,6 @@ namespace iPractice.Infrastructure
         public DbSet<Client> Clients { get; set; }
 
         private readonly IMediator _mediator;
-        private readonly IDbContextTransaction _currentTransaction;
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
@@ -30,7 +28,7 @@ namespace iPractice.Infrastructure
             modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
             base.OnModelCreating(modelBuilder);
         }
-        public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
         {
             // Dispatch Domain Events collection. 
             // Choices:

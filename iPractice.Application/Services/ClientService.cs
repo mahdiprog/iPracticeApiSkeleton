@@ -25,7 +25,7 @@ namespace iPractice.Application.Services
             }
 
             var psychologists =
-                await _psychologistRepository.GetByIds(client.Psychologists.Select(p => p.Id)
+                await _psychologistRepository.GetByIdsIncludeNotOccupiedAvailability(client.Psychologists.Select(p => p.Id)
                     .ToArray());
             return psychologists.ToAvailabilityDto();
         }

@@ -26,7 +26,7 @@ namespace iPractice.Api
                 await context.Database.MigrateAsync();
 
                 var seedData = new SeedData(context);
-                seedData.Seed();
+                //seedData.Seed();
 
             }
         }

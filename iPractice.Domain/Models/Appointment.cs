@@ -4,9 +4,18 @@ namespace iPractice.Domain.Models
 {
     public class Appointment : Entity
     {
-        public Client Client { get; private set; }
-        public Psychologist Psychologist { get; private set; }
-        public Availability Availability { get; private set; }
+        public Appointment()
+        {
+        }
+        public Appointment(Client client, Availability availability)
+        {
+            Client = client;
+            Availability = availability;
+        }
+
+        public Client Client { get; init; }
+
+        public Availability Availability { get; init; }
 
     }
 }

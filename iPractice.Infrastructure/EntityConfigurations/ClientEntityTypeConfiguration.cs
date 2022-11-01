@@ -11,15 +11,9 @@ class ClientEntityTypeConfiguration
     {
         clientConfiguration.HasKey(psychologist => psychologist.Id);
 
-        var navigation = clientConfiguration.Metadata.FindNavigation(nameof(Client.Psychologists));
-
-        // DDD Patterns comment:
-        //Set as field (New since EF 1.1) to access the Clients collection property through its field
-        navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
-        clientConfiguration.HasMany(p => p.Psychologists).WithMany(b => b.Clients);
-
         clientConfiguration.Metadata.FindNavigation(nameof(Client.Appointments)).SetPropertyAccessMode(PropertyAccessMode.Field);
-        clientConfiguration.HasMany<Appointment>(p => p.Appointments);
+        clientConfiguration.HasMany<Appointment>(p => p.Appointments)
+            .WithOne(a => a.Client);
     }
 
 }

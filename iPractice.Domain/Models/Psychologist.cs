@@ -1,5 +1,4 @@
 ﻿using iPractice.Domain.Events;
-using iPractice.Domain.Exceptions;
 using iPractice.Domain.SeedWork;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +9,7 @@ namespace iPractice.Domain.Models
     {
         public string Name { get; private set; }
 
-        private readonly List<Client> _clients = new();
-        public IReadOnlyCollection<Client> Clients => _clients;
+        public IReadOnlyCollection<Client> Clients { get; private set; }
 
         private readonly List<Availability> _availabilities = new();
         public IReadOnlyCollection<Availability> Availabilities => _availabilities;
@@ -19,11 +17,6 @@ namespace iPractice.Domain.Models
         {
             Id = id;
             Name = name;
-        }
-
-        internal void AddClient(Client client)
-        {
-            _clients.Add(client);
         }
 
         public void SetAvailability(Availability availability)
@@ -41,18 +34,6 @@ namespace iPractice.Domain.Models
                 _availabilities.Add(availability);
                 AddDomainEvent(new AvailabilityUpdatedDomainEvent(availability, Id));
             }
-        }
-
-        public void SetAppointment(long clientId, long availabilityId)
-        {
-            Availability availability = _availabilities.FirstOrDefault(a => a.Id == availabilityId);
-            if (availability == null)
-                throw new AvailabilityNotFoundDomainException();
-
-            if (availability.ClientId.HasValue)
-                throw new AvailabilityOccupiedDomainException();
-
-            availability.SetAppointment(clientId);
         }
     }
 }

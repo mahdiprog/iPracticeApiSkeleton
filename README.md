@@ -9,7 +9,5 @@ It is entirely acceptable to add remove or rename any of the components of the p
 @johngibsondev
 I tried to do it in a time box so these are the things not implmented but needed:
 - Tests
-- request validation
-- psychologists controller
-- repositories implementation
-- injecting services and repositories
+- Request validation
+
