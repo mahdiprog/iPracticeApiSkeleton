@@ -47,7 +47,7 @@ namespace iPractice.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult> CreateAppointment(long clientId, [FromBody] TimeSlot timeSlot)
         {
-            await _clientService.CreateAppointment(clientId, timeSlot.PsychologistId, timeSlot.AvailabilityId);
+            await _clientService.CreateAppointment(clientId, timeSlot.PsychologistId, timeSlot.AvailabilityId, timeSlot.FromTime);
             return Ok();
         }
     }

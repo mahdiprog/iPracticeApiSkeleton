@@ -17,7 +17,7 @@ public class ClientRepository
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
-    public async Task<Appointment> AddAppointment(long clientId, long psychologistId, long availabilityId)
+    public async Task<Appointment> AddAppointment(long clientId, long psychologistId, long availabilityId, DateTime date)
     {
         var client = await _context.Clients.Include(c => c.Psychologists)
             .SingleAsync(c => c.Id == clientId).ConfigureAwait(false);
@@ -25,7 +25,7 @@ public class ClientRepository
         var psychologist = await _context.Psychologists.Include(c => c.Availabilities)
             .SingleAsync(c => c.Id == psychologistId).ConfigureAwait(false);
 
-        var appointment = new Appointment(client, psychologist.Availabilities.Single(a => a.Id == availabilityId));
+        var appointment = new Appointment(client, psychologist.Availabilities.Single(a => a.Id == availabilityId), date);
 
         client.AddAppointment(appointment);
 

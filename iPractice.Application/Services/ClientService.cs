@@ -30,10 +30,10 @@ namespace iPractice.Application.Services
             return psychologists.ToAvailabilityDto();
         }
 
-        public async Task CreateAppointment(long clientId, long psychologistId, long availabilityId)
+        public async Task CreateAppointment(long clientId, long psychologistId, long availabilityId, DateTime date)
         {
             await _clientRepository.AddAppointment(clientId,
-                psychologistId, availabilityId);
+                psychologistId, availabilityId, date.Date);
         }
     }
 }
