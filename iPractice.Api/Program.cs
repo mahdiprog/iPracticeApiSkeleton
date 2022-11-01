@@ -1,9 +1,9 @@
-using System.Threading.Tasks;
-using iPractice.DataAccess;
+using iPractice.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Threading.Tasks;
 
 namespace iPractice.Api
 {

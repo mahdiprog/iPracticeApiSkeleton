@@ -1,4 +1,4 @@
-using iPractice.DataAccess;
+using iPractice.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -31,7 +31,7 @@ namespace iPractice.Api
 
 
             });
-            
+
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("Sqlite")));
 
             services.AddControllers();

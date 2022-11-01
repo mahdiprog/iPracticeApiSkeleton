@@ -5,3 +5,11 @@
 This is a simple ASP.Net core API project setup to run using SQLite. There is an initial migration to create and seed the database and two controllers with the required endpoints.
 
 It is entirely acceptable to add remove or rename any of the components of the project.
+
+@johngibsondev
+I tried to do it in a time box so these are the things not implmented but needed:
+- Tests
+- request validation
+- psychologists controller
+- repositories implementation
+- injecting services and repositories
