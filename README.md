@@ -6,7 +6,8 @@ This is a simple ASP.Net core API project setup to run using SQLite. There is an
 
 It is entirely acceptable to add remove or rename any of the components of the project.
 
-@johngibsondev
+[@johngibsondev](https://www.github.com/johngibsondev)
+
 I tried to do it in a time box so these are the things not implmented but needed:
 - Tests
 - Request validation
