@@ -13,6 +13,9 @@ class AvailabilityEntityTypeConfiguration
         configuration.Property(o => o.Id).ValueGeneratedOnAdd();
 
         configuration.HasOne(p => p.Psychologist).WithMany(b => b.Availabilities);
+        configuration.HasOne(p => p.Appointment)
+            .WithOne(b => b.Availability)
+            .HasForeignKey<Appointment>(a => a.Id);
     }
 
 }
